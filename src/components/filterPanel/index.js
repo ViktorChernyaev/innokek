@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import generateArrays from "services/createRandomArrays";
 
 const Field = (props) => (<input type="text" className="filter-panel__head-input" {...props} />);
+const formatInnerObj = (obj) => ` [${Object.entries(obj).map(objToString).join(", ")}] `;
+const objToString = ([name, value]) => `{ ${name}: ${value} }`;
 
 export default class FilterPanel extends Component {
     state = {
@@ -27,10 +29,10 @@ export default class FilterPanel extends Component {
     }
 
     renderItems = () => {
-        const formatInnerObj = (obj) => Object.entries(obj).map(([name, value]) => `${name}: ${value}`).join(", ");
-        return this.state.items.map(item => (
-            <li>{item.map(formatInnerObj).join(";")}</li>
-        ));
+        return this.state.items.map(({ item, i }) => {
+            const formatted = item.map(formatInnerObj).join(", ");
+            return (<li key={i}>{`[${formatted}];`}</li>);
+        });
     }
 
     render() {
