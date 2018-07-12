@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
+import FilterPanel from "components/filterPanel";
 
-export default class App extends Component {
-    render() {
-        return (
-            <div className="app">Hello, App</div>
-        );
-    }
-}
+const App = () => (
+    <div className="page-wrapper">
+        <FilterPanel />
+    </div>
+);
+
+export default App;
