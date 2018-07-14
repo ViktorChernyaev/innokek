@@ -1,15 +1,13 @@
 import React, { Component } from "react";
+import { objectToString } from "helpers/format";
 import generateArrays from "services/createRandomArrays";
-
-const Field = (props) => (<input type="text" className="filter-panel__head-input" {...props} />);
-const formatInnerObj = (obj) => ` [${Object.entries(obj).map(objToString).join(", ")}] `;
-const objToString = ([name, value]) => `{ ${name}: ${value} }`;
 
 export default class FilterPanel extends Component {
     state = {
         propName: "",
         propValue: "",
-        items: []
+        items: [],
+        flattenItems: []
     }
 
     componentDidMount() {
@@ -21,7 +19,9 @@ export default class FilterPanel extends Component {
     }
 
     recalcList = () => {
-        this.setState({ items: generateArrays() });
+        const items = generateArrays();
+        const flattenItems = items.reduce((acc, { item }) => acc.concat(item), []);
+        this.setState({ items, flattenItems });
     }
 
     renderFilteredItems = () => {
@@ -30,7 +30,7 @@ export default class FilterPanel extends Component {
 
     renderItems = () => {
         return this.state.items.map(({ item, i }) => {
-            const formatted = item.map(formatInnerObj).join(", ");
+            const formatted = item.map(objectToString).join(", ");
             return (<li key={i}>{`[${formatted}];`}</li>);
         });
     }
@@ -40,13 +40,17 @@ export default class FilterPanel extends Component {
         return (
             <div className="filter-panel">
                 <div className="filter-panel__head">
-                    <Field
+                    <input
+                        type="text"
+                        className="filter-panel__head-input"
                         name="propName"
                         value={propName}
                         placeholder="Имя"
                         onChange={this.setValue}
                     />
-                    <Field
+                    <input
+                        type="text"
+                        className="filter-panel__head-input"
                         placeholder="Значение"
                         name="propValue"
                         onChange={this.setValue}
