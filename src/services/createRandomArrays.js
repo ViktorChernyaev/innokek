@@ -19,7 +19,6 @@ const nameTemplates = [
     "natoque"
 ];
 const randomName = () => nameTemplates[randomMinMax(0, 15)];
-const randomKeysCount = () => randomMinMax(1, 10);
 
 function* objectGenerator(keysCount) {
     let i = 0;
@@ -33,11 +32,19 @@ function* arrayGenerator(k = 1000) {
     let i = 0;
     while (i < k) {
         i++;
-        yield Object.assign({}, ...objectGenerator(randomKeysCount()));
+        yield Object.assign({}, ...objectGenerator(randomMinMax(1, 10)));
     }
 }
 
-export default function generate(length) {
-    return Array.from(arrayGenerator(length));
+function* arraysGenerator(count) {
+    let i = 0;
+    while (i < count) {
+        i++;
+        yield Array.from(arrayGenerator(randomMinMax(5, 10)));
+    }
+}
+
+export default function generate() {
+    return Array.from(arraysGenerator(randomMinMax(10, 20))).map((item, i) => ({ item, i }));
 }
 
