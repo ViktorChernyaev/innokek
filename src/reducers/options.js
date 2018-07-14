@@ -15,11 +15,11 @@ export default handleActions({
     }),
     [UPDATE_OPTION]: (state, { payload }) => ({
         ...state,
-        items: state.items.map((item, i) => i === payload.i ? payload.item : item),
+        items: state.items.map((item) => item.i === payload.i ? payload : item),
     }),
     [DELETE_OPTION]: (state, { payload }) => ({
         ...state,
-        items: state.items.filter((item, i) => i !== payload)
+        items: state.items.filter(({ item, i }) => i !== payload)
     }),
     [FILTER_OPTIONS]: (state, { payload }) => ({
         ...state,

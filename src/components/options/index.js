@@ -4,6 +4,19 @@ import FilterOptions from "./filterOptions";
 import Option from "./option";
 
 export default class Options extends Component {
+    state = {
+        currentOption: null
+    }
+
+    changeCurrentOption = (i) => {
+        this.setState({ currentOption: i });
+    }
+
+    handleUpdate = (item, i) => {
+        const { updateOption } = this.props;
+        this.setState({ currentOption: null });
+        updateOption(item, i);
+    }
 
     handleFilter = ({ target }) => {
         const { filterOptions } = this.props;
@@ -48,12 +61,15 @@ export default class Options extends Component {
     }
 
     renderItems = () => {
-        const { items, updateOption, deleteOption, sort } = this.props;
+        const { items, deleteOption, sort } = this.props;
         const filteredItems = items.filter(this.filterInstruction);
         return (sort === null ? filteredItems : filteredItems.sort(this.sortInstruction)).map(({ item, i }) => (
             <Option
                 key={i}
-                updateOption={updateOption}
+                i={i}
+                currentOption={this.state.currentOption}
+                changeCurrent={this.changeCurrentOption}
+                updateOption={this.handleUpdate}
                 deleteOption={deleteOption}
                 item={item}
             />
