@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { objectToString } from "helpers/format";
-import generateArrays from "services/createRandomArrays";
+import { arrayOfArrays } from "services/createRandomArrays";
 
 export default class FilterPanel extends Component {
     state = {
@@ -19,7 +19,7 @@ export default class FilterPanel extends Component {
     }
 
     recalcList = () => {
-        const items = generateArrays();
+        const items = arrayOfArrays();
         const flattenItems = items
             .reduce((acc, { item }) => acc.concat(item), [])
             .map((item, i) => ({ item, i }));

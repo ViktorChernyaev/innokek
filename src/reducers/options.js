@@ -1,8 +1,9 @@
 import { handleActions } from "redux-actions";
 import { ADD_OPTION, UPDATE_OPTION, DELETE_OPTION, FILTER_OPTIONS, SORT_OPTIONS } from "constants/options";
+import { labelValueArray } from "services/createRandomArrays";
 
 const initialState = {
-    items: [],
+    items: labelValueArray(),
     filters: { label: "", value: "" },
     sort: null
 }

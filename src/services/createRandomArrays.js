@@ -28,11 +28,11 @@ function* objectGenerator(keysCount) {
     }
 }
 
-function* arrayGenerator(k = 1000) {
+function* arrayGenerator(k = 1000, generator) {
     let i = 0;
     while (i < k) {
         i++;
-        yield Object.assign({}, ...objectGenerator(randomMinMax(1, 10)));
+        yield generator ? Object.assign({}, ...generator()) : { label: randomValue(), value: randomValue() };
     }
 }
 
@@ -40,11 +40,16 @@ function* arraysGenerator(count) {
     let i = 0;
     while (i < count) {
         i++;
-        yield Array.from(arrayGenerator(randomMinMax(5, 10)));
+        yield Array.from(arrayGenerator(randomMinMax(5, 10), () => objectGenerator(randomMinMax(1, 10))));
     }
 }
 
-export default function generate() {
+export function arrayOfArrays() {
     return Array.from(arraysGenerator(randomMinMax(10, 20))).map((item, i) => ({ item, i }));
+}
+
+export function labelValueArray() {
+    // console.log(Array.from(arrayGenerator()))
+    return Array.from(arrayGenerator()).map((item, i) => ({ item, i }));
 }
 
