@@ -4,14 +4,14 @@ import { labelValueArray } from "services/createRandomArrays";
 
 const initialState = {
     items: labelValueArray(),
-    filters: { label: "", value: "" },
+    filters: { labelFilter: "", valueFilter: "" },
     sort: null
 }
 
 export default handleActions({
     [ADD_OPTION]: (state, { payload }) => ({
         ...state,
-        items: state.items.concat(payload)
+        items: state.items.concat({ item: payload, i: state.items[state.items.length - 1].i + 1 })
     }),
     [UPDATE_OPTION]: (state, { payload }) => ({
         ...state,
@@ -23,7 +23,7 @@ export default handleActions({
     }),
     [FILTER_OPTIONS]: (state, { payload }) => ({
         ...state,
-        filters: { ...state.filters, payload }
+        filters: { ...state.filters, ...payload }
     }),
     [SORT_OPTIONS]: (state, { payload }) => ({
         ...state,

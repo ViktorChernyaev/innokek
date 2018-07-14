@@ -60,9 +60,9 @@ export default class FilterPanel extends Component {
                     <input
                         type="text"
                         className="filter-panel__input"
+                        placeholder="Имя"
                         name="propName"
                         value={propName}
-                        placeholder="Имя"
                         onChange={this.setValue}
                     />
                     <input
@@ -70,17 +70,17 @@ export default class FilterPanel extends Component {
                         className="filter-panel__input"
                         placeholder="Значение"
                         name="propValue"
-                        onChange={this.setValue}
                         value={propValue}
+                        onChange={this.setValue}
                     />
-                    <div className="filter-panel__recalcer" onClick={this.recalcList}>Новый список</div>
+                    <div className="filter-panel__text" onClick={this.recalcList}>Новый список</div>
                 </div>
                 <div className="panel">
                     <div className="objects-list">
                         <h3 className="objects-list__title">Список совпадений</h3>
                         <ol className="objects-list__body">{this.renderFilteredItems()}</ol>
                     </div>
-                    <hr />
+                    <div className="panel__separator" />
                     <div className="objects-list">
                         <h3 className="objects-list__title">Список элементов</h3>
                         <ol className="objects-list__body">{this.renderItems()}</ol>
