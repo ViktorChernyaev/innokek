@@ -1,0 +1,30 @@
+.page-nav.panel {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.page-nav__link {
+    display: block;
+    position: relative;
+    padding: 0 10px;
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 50px;
+}
+
+.page-nav__link--active::before {
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #f86c6b;
+    content: "";
+}

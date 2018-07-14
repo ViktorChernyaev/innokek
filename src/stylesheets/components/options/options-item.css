@@ -1,0 +1,36 @@
+.options-item {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.options-item__btn {
+    display: inline-block;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.options-item__form {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.options-item__input {
+    max-width: 130px;
+    margin: 0 5px 5px 0;
+    padding: 0 5px;
+    font-size: 12px;
+    line-height: 22px;
+}
+
+.options-item__submit {
+    max-width: 100px;
+    padding: 0 5px;
+    font-size: 12px;
+    line-height: 22px;
+}

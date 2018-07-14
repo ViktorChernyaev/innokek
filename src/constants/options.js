@@ -1,0 +1,5 @@
+export const ADD_OPTION = "ADD_OPTION";
+export const UPDATE_OPTION = "UPDATE_OPTION";
+export const DELETE_OPTION = "DELETE_OPTION";
+export const FILTER_OPTIONS = "FILTER_OPTIONS";
+export const SORT_OPTIONS = "SORT_OPTIONS";

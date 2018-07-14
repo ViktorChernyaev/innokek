@@ -9,7 +9,7 @@ body {
     width: 100%;
     min-height: 100vh;
     margin: 0;
-    padding: 16px 30px;
+    padding: 0 30px 16px;
     background-color: #e4e5e6;
     color: #23282c;
     font-family: "Open Sans", sans-serif;
