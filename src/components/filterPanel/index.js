@@ -20,12 +20,29 @@ export default class FilterPanel extends Component {
 
     recalcList = () => {
         const items = generateArrays();
-        const flattenItems = items.reduce((acc, { item }) => acc.concat(item), []);
-        this.setState({ items, flattenItems });
+        const flattenItems = items
+            .reduce((acc, { item }) => acc.concat(item), [])
+            .map((item, i) => ({ item, i }));
+        this.setState({ items, flattenItems, propName: "", propValue: "" });
+    }
+
+    flattenFilter = ({ item }) => {
+        const { propName, propValue } = this.state;
+        const namePresents = propName && Object.keys(item).find(val => val.includes(propName));
+        if (propValue && namePresents) {
+            return item[propName] && item[propName].includes(propValue);
+        } else if (!propName && propValue) {
+            return propValue && Object.values(item).find(val => val.includes(propValue));
+        } else if (propName && !propValue) {
+            return namePresents;
+        }
+        return false;
     }
 
     renderFilteredItems = () => {
-        return null;
+        return this.state.flattenItems.filter(this.flattenFilter).map(({ item, i }) => {
+            return (<div key={i}>{objectToString(item)}</div>);
+        });
     }
 
     renderItems = () => {
