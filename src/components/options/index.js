@@ -10,6 +10,26 @@ export default class Options extends Component {
         filterOptions({ [target.name]: target.value });
     }
 
+    filterInstruction = ({ item }) => {
+        const { labelFilter, valueFilter } = this.props.filters;
+        if (!labelFilter && !valueFilter) {
+            return true;
+        }
+        return (labelFilter && item.label.includes(labelFilter)) || (valueFilter && item.value.includes(valueFilter));
+    }
+
+    sortInstruction = (first, second) => {
+        if (first.item.label === second.item.label) {
+            return 0;
+        }
+        const { sort } = this.props;
+        if (sort === true) {
+            return first.item.label.localeCompare(second.item.label);
+        } else {
+            return second.item.label.localeCompare(first.item.label);
+        }
+    }
+
     renderNewOption = () => {
         const { addOption } = this.props;
         return (<NewOption addOption={addOption} />);
@@ -28,8 +48,9 @@ export default class Options extends Component {
     }
 
     renderItems = () => {
-        const { items, updateOption, deleteOption } = this.props;
-        return items.map(({ item, i }) => (
+        const { items, updateOption, deleteOption, sort } = this.props;
+        const filteredItems = items.filter(this.filterInstruction);
+        return (sort === null ? filteredItems : filteredItems.sort(this.sortInstruction)).map(({ item, i }) => (
             <Option
                 key={i}
                 updateOption={updateOption}
@@ -47,7 +68,7 @@ export default class Options extends Component {
                     <div className="panel__separator" />
                     {this.renderFilters()}
                 </div>
-                <div className="panel">
+                <div className="panel options-list">
                     {this.renderItems()}
                 </div>
             </Fragment>
