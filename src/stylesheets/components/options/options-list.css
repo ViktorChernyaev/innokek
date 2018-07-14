@@ -1,0 +1,10 @@
+ .options-list {
+    column-count: 3;
+    column-rule: 1px solid #c8ced3;
+    column-gap: 30px;
+ }
+
+ .options-list__item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+ }

@@ -48,28 +48,28 @@ export default class Option extends Component {
                 <form className="options-item__form" onSubmit={this.handleUpdate}>
                     <input
                         type="text"
-                        className="options-item__input"
+                        className="options-item__input input"
                         value={label}
                         name="label"
                         onChange={this.setValue}
                     />
                     <input
                         type="text"
-                        className="options-item__input"
+                        className="options-item__input input"
                         value={value}
                         name="value"
                         onChange={this.setValue}
                     />
                     <input
                         type="submit"
-                        className="options-item__input"
+                        className="options-item__submit btn"
                         value="Принять"
                     />
                 </form>
             );
         }
         const { label, value } = item;
-        return `{ ${label}: ${value} },`;
+        return `{ ${label}: ${value} }`;
     }
 
     render() {

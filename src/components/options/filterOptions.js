@@ -19,7 +19,7 @@ const FilterOptions = ({ handleFilter, filters, sort, handleSort }) => {
         <div className="filter-panel">
             <input
                 type="text"
-                className="filter-panel__input"
+                className="input"
                 placeholder="Фильтр по label"
                 name="labelFilter"
                 value={filters.labelFilter}
@@ -27,7 +27,7 @@ const FilterOptions = ({ handleFilter, filters, sort, handleSort }) => {
             />
             <input
                 type="text"
-                className="filter-panel__input"
+                className="input"
                 placeholder="Фильтр по value"
                 name="valueFilter"
                 value={filters.valueFilter}

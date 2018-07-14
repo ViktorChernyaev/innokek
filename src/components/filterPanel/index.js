@@ -59,7 +59,7 @@ export default class FilterPanel extends Component {
                 <div className="filter-panel panel">
                     <input
                         type="text"
-                        className="filter-panel__input"
+                        className="input"
                         placeholder="Имя"
                         name="propName"
                         value={propName}
@@ -67,7 +67,7 @@ export default class FilterPanel extends Component {
                     />
                     <input
                         type="text"
-                        className="filter-panel__input"
+                        className="input"
                         placeholder="Значение"
                         name="propValue"
                         value={propValue}

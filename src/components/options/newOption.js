@@ -25,7 +25,7 @@ export default class Option extends Component {
             <form className="filter-panel" onSubmit={this.handleSubmit}>
                 <input
                     type="text"
-                    className="filter-panel__input"
+                    className="input"
                     placeholder="label"
                     name="label"
                     value={label}
@@ -33,7 +33,7 @@ export default class Option extends Component {
                 />
                 <input
                     type="text"
-                    className="filter-panel__input"
+                    className="input"
                     placeholder="value"
                     name="value"
                     value={value}
@@ -41,7 +41,7 @@ export default class Option extends Component {
                 />
                 <input
                     type="submit"
-                    className="filter-panel__submit"
+                    className="btn"
                     value="Создать"
                 />
             </form>
