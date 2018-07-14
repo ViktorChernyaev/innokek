@@ -1,0 +1,20 @@
+.objects-list {
+    padding: 20px 30px;
+}
+
+.objects-list__title {
+    margin: 0 0 20px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.objects-list__body {
+    min-height: 150px;
+    margin: 0;
+    padding: 0;
+}
+
+.objects-list__item {
+    font-size: 12px;
+    white-space: pre-wrap;
+}

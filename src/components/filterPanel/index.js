@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { objectToString } from "helpers/format";
 import generateArrays from "services/createRandomArrays";
 
@@ -41,25 +41,25 @@ export default class FilterPanel extends Component {
 
     renderFilteredItems = () => {
         return this.state.flattenItems.filter(this.flattenFilter).map(({ item, i }) => {
-            return (<div key={i}>{objectToString(item)}</div>);
+            return (<li className="objects-list__item" key={i}>{objectToString(item)}</li>);
         });
     }
 
     renderItems = () => {
         return this.state.items.map(({ item, i }) => {
-            const formatted = item.map(objectToString).join(", ");
-            return (<li key={i}>{`[${formatted}];`}</li>);
+            const formatted = item.map(item => `\t${objectToString(item)}`).join(",\n");
+            return (<li className="objects-list__item" key={i}>{`[\n${formatted}\n];`}</li>);
         });
     }
 
     render() {
         const { propName, propValue } = this.state;
         return (
-            <div className="filter-panel">
-                <div className="filter-panel__head">
+            <Fragment>
+                <div className="filter-panel panel">
                     <input
                         type="text"
-                        className="filter-panel__head-input"
+                        className="filter-panel__input"
                         name="propName"
                         value={propName}
                         placeholder="Имя"
@@ -67,20 +67,26 @@ export default class FilterPanel extends Component {
                     />
                     <input
                         type="text"
-                        className="filter-panel__head-input"
+                        className="filter-panel__input"
                         placeholder="Значение"
                         name="propValue"
                         onChange={this.setValue}
                         value={propValue}
                     />
-                    <div className="filter-panel__head-recalcer" onClick={this.recalcList}>Новый список</div>
+                    <div className="filter-panel__recalcer" onClick={this.recalcList}>Новый список</div>
                 </div>
-                <div className="filter-panel__body">
-                    <ul>{this.renderFilteredItems()}</ul>
+                <div className="panel">
+                    <div className="objects-list">
+                        <h3 className="objects-list__title">Список совпадений</h3>
+                        <ol className="objects-list__body">{this.renderFilteredItems()}</ol>
+                    </div>
                     <hr />
-                    <ul>{this.renderItems()}</ul>
+                    <div className="objects-list">
+                        <h3 className="objects-list__title">Список элементов</h3>
+                        <ol className="objects-list__body">{this.renderItems()}</ol>
+                    </div>
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }
