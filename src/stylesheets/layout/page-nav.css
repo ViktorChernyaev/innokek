@@ -1,4 +1,4 @@
-.page-nav {
+.page-nav.panel {
     display: flex;
     flex-flow: row wrap;
     align-items: flex-start;
